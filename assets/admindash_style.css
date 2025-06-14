@@ -17,6 +17,7 @@ hr{
   width: 220px;
   position: fixed;
   height: 100%;
+  transition: all 0.3s ease;
 }
 
 .sidebar a {
@@ -39,20 +40,25 @@ hr{
 
 
 .main-content {
-  margin-left: 230px;
+  margin-left: 220px;
+  width: calc(100% - 220px);
   padding: 25px;
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
 /* Dashboard Cards */
 .dashboard-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .card-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .dashboard-card {
@@ -94,3 +100,56 @@ hr{
   color: white;
 }
 
+/* Collapsible Sidebar */
+
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* When collapsed, center icons inside the small width */
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  padding: 5px 5px;
+}
+
+.sidebar.collapsed .nav-link span,
+.sidebar.collapsed h5 {
+  display: none;
+}
+
+.sidebar.collapsed a i {
+  display: inline-block;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+.dashboard-card.expanded {
+  width: 300px;
+}
+
+
+/* Burger button: clean look */
+#toggleSidebar {
+  padding: 4px;
+  margin-left: auto;
+}
+
+
+/*table style*/
+
+thead tr th{
+  font-weight: bold;
+  color: #493D9E;
+}

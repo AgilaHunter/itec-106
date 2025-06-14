@@ -1,12 +1,11 @@
 <?php
 	session_start();
-	include("dbconnect.php");
+	include("../dbconnect.php");
 	if(!isset($_SESSION['loggedin']) || $_SESSION['role'] != 'admin') {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -33,18 +32,7 @@
 
 	<div class="d-flex">
 		<!-- Sidebar -->
-		<div class="sidebar d-flex flex-column shadow bg-light p-3">
-		    <!-- Sidebar content -->
-		    <h5><b>POS System</b></h5>
-		    <ul class="nav flex-column">
-		      <li class="nav-item"><a href="admin.php" class="nav-link active">Home</a></li>
-		      <li class="nav-item"><a href="#" class="nav-link">Staff Information</a></li>
-		      <li class="nav-item"><a href="#" class="nav-link">Report</a></li>
-		      <hr>
-		      <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
-		    </ul>
-  		</div>
-  		
+		<?php include 'sidebar.php'; ?>
 
 	  	<!-- Main Content -->
 	  	<div class="main-content">
@@ -88,7 +76,7 @@
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 55px;">
 				    	<h5 class="m-0">Manage Staff</h5>
-				        <a href="#" class="btn" role="button">+ Add New Staff</a>
+				        <a href="#" class="btn" role="button" name="adde">+ Add New Staff</a>
 				    </div>
 
 				    <div class="table-responsive">
@@ -121,7 +109,7 @@
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 5px;">
 				    	<h5 class="m-0">Sales</h5>
-				        <a href="#" class="btn" role="button">Generate Sales Report</a>
+				        <a href="#" class="btn" role="button" name="adds">Generate Sales Report</a>
 				    </div>
 
 				    <div class="table-responsive">
@@ -153,11 +141,32 @@
 		</div>
 	</div>
 	
-
-    
-	
 	<!-- Fontawesome Bundle -->
 	<script src="https://kit.fontawesome.com/0b5cc4708b.js" crossorigin="anonymous"></script>
+
+	<script>
+	  document.addEventListener("DOMContentLoaded", function () {
+	    const toggleButton = document.getElementById("toggleSidebar");
+	    const sidebar = document.getElementById("sidebar");
+	    const mainContent = document.querySelector(".main-content");
+
+	    // Check localStorage on load
+	    const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+	    if (isCollapsed) {
+	      sidebar.classList.add("collapsed");
+	      mainContent.classList.add("expanded");
+	    }
+
+	    // Toggle sidebar and save state
+	    toggleButton.addEventListener("click", () => {
+	      sidebar.classList.toggle("collapsed");
+	      mainContent.classList.toggle("expanded");
+	      const collapsedNow = sidebar.classList.contains("collapsed");
+	      localStorage.setItem("sidebarCollapsed", collapsedNow);
+	    });
+	  });
+	</script>
+
 
 </body>
 </html>
