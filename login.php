@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("dbconnect.php");
+include("../dbconnect.php");
 
 if(isset($_POST['submit'])) {
     $username = $_POST['user'];
@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
         
         // Redirect based on role
         if($user['position'] == 'admin') {
-            header("Location: admin.php");
+            header("Location: admin/admin.php");
         } elseif($user['position'] == 'staff') {
             header("Location: staff.php");
         }

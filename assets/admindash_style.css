@@ -1,0 +1,155 @@
+body{
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h5{
+  color: #493D9E;
+  padding: 16px;
+}
+
+hr{
+  background-color: grey;
+}
+
+.sidebar {
+  width: 220px;
+  position: fixed;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.sidebar a {
+  display: block;
+  color: #493D9E;
+  padding: 16px;
+}
+
+.sidebar a.active {
+  background-color: #7107d0;
+  color: white;
+  border-radius: 15px;
+}
+
+.sidebar a:hover{
+  background-color: lavender;
+  color: #493D9E;
+  border-radius: 15px;
+}
+
+
+.main-content {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+  padding: 25px;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Dashboard Cards */
+.dashboard-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.dashboard-card {
+  color: #7107d0;
+  border-radius: 8px;
+  padding: 20px;
+  width: 250px;
+  text-align: left;
+}
+
+.dashboard-card i {
+  font-size: 28px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: #640bb6;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: gray;
+}
+
+.btn{
+  background-color: #7107d0;
+  color: whitesmoke;
+}
+
+.btn:hover{
+  background-color: #5909a0;
+  color: whitesmoke;
+}
+
+.rounded-circle i.fa{
+  color: white;
+}
+
+/* Collapsible Sidebar */
+
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* When collapsed, center icons inside the small width */
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  padding: 5px 5px;
+}
+
+.sidebar.collapsed .nav-link span,
+.sidebar.collapsed h5 {
+  display: none;
+}
+
+.sidebar.collapsed a i {
+  display: inline-block;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+.dashboard-card.expanded {
+  width: 300px;
+}
+
+
+/* Burger button: clean look */
+#toggleSidebar {
+  padding: 4px;
+  margin-left: auto;
+}
+
+
+/*table style*/
+
+thead tr th{
+  font-weight: bold;
+  color: #493D9E;
+}

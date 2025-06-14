@@ -1,0 +1,89 @@
+body{
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h5{
+    color: #493D9E;
+}
+
+hr{
+    color: palevioletred;
+}
+
+.divider{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.dashboard-wrapper {
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 40px;
+}
+
+/*glass morphism card*/
+.card{
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 10px;
+    border: none;
+}
+
+/*glass morphism card entry fields login signup*/
+.card .form-control{
+    background: rgba(255, 255, 255, 0.1); /* Transparent white */
+    border-radius: 15px;
+    padding: 9px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1rem); /* Blurred background effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card .form-control::placeholder {
+    color: gray ;
+    opacity: 1;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: palevioletred;
+}
+
+input {
+    color: black; 
+}
+
+
+/*form labels*/
+label{
+    padding-top: 5px;
+    color: #493D9E;
+}
+
+#register{
+    background-color: #7107d0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+}
+
+#register:hover{
+    background-color: #5909a0;
+    color: whitesmoke;
+}
+
+#clear{
+    background-color: lightgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+}
+
+#clear:hover{
+    background-color: grey;
+    color: whitesmoke;
+}
