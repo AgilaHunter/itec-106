@@ -43,7 +43,7 @@
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 5px;">
 				    	<h5 class="m-0">Manage Staff</h5>
-				        <a href="#" class="btn" role="button">+ Add New Employee</a>
+				        <a href="register.php" class="btn" role="button">+ Add New Staff</a>
 				    </div>
 
 				    <div class="table-responsive">
@@ -85,9 +85,6 @@
 				                    <td class="sale"><?php echo $row['salary'] ?></td>
 
 				                    <td class="text-center">
-				                    	<!-- <span class="rounded-circle p-1 me-2 d-inline-flex justify-content-center align-items-center" style="background-color: #7fc900; width: 30px; height: 30px;">
-				                    		<i class="fa fa-eye" aria-hidden="true"></a></i>
-				                    	</span> -->
 				                    	<span class="rounded-circle p-1 me-2 d-inline-flex justify-content-center align-items-center" style="background-color: #c9af00;width: 30px; height: 30px;">
 				                    		<a href="staffUpdate.php?id=<?php echo $row['id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></a></i>
 				                    	</span>

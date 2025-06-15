@@ -84,15 +84,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['register'])){
 
                     <h5 class="divider">Personal Information</h5>
                     <!-- Name -->
-                    <label>Name</label>
                     <div class="row g-2">
                         <div class="col">
+                            <label>First Name</label>
                             <input type="text" class="form-control" placeholder="First Name" id="fname" name="fname" required>
                         </div>
                         <div class="col">
+                            <label>Middle Name</label>
                             <input type="text" class="form-control" placeholder="Middle Name" id="mname" name="mname" required>
                         </div>
                         <div class="col">
+                            <label>Last Name</label>
                             <input type="text" class="form-control" placeholder="Last Name" id="lname" name="lname" required>
                         </div>
                     </div><br><br>

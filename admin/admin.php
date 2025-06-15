@@ -5,6 +5,11 @@
     header("Location: ../login.php");
     exit();
 }
+	$sql = "SELECT id, fname, mname, lname FROM staff 
+			WHERE position = 'staff' 
+			ORDER BY id ASC LIMIT 5";
+	$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -89,14 +94,25 @@
 				                    <th>Middle Name</th>
 				                </tr>
 				            </thead>
+
+				            <?php
+				            	if($result->num_rows>0)
+				            	while($row=$result->fetch_assoc()){
+				            ?>
+
 				            <tbody>
 				                <tr class="text-center">
-				                    <td>0001</td>
-				                    <td>Regencia</td>
-				                    <td>Samantha Arabella</td>
-				                    <td>Redilla</td>
+				                    <td class="sale"><?php echo $row['id'] ?></td>
+				                    <td class="sale"><?php echo $row['lname'] ?></td>
+				                    <td class="sale"><?php echo $row['fname'] ?></td>
+				                    <td class="sale"><?php echo $row['mname'] ?></td>
 				                </tr>   
 	            			</tbody>
+
+	            			<?php
+	            				}
+	            			?>
+	            			
 	       				</table>
     				</div>
 				</div>

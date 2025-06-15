@@ -77,15 +77,17 @@
 
 					<h5 class="divider">Personal Information</h5>
 	  				<!-- Name -->
-	  				<label>Name</label>
 	  				<div class="row g-2">
 	  					<div class="col">
+	  						<label>First Name</label>
 	  						<input type="text" class="form-control" placeholder="First Name" id="fname" name="fname" value="<?php echo $fname?>" required>
 	  					</div>
 	  					<div class="col">
+	  						<label>Middle Name</label>
 	  						<input type="text" class="form-control" placeholder="Middle Name" id="mname" name="mname" value="<?php echo $mname?>" required>
 	  					</div>
 	  					<div class="col">
+	  						<label>Last Name</label>
 	  						<input type="text" class="form-control" placeholder="Last Name" id="lname" name="lname" value="<?php echo $lname?>" required>
 	  					</div>
 	  				</div><br><br>
