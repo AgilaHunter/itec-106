@@ -2,34 +2,45 @@
 session_start();
 include("../dbconnect.php");
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     $username = $_POST['user'];
     $password = $_POST['pass'];
-    
-    // Use prepared statements for security
-    $query = "SELECT * FROM staff WHERE username=? AND password=?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    
-    if(mysqli_num_rows($result) == 1) {
-        $user = mysqli_fetch_assoc($result);
-        
-        // Set session variables
+
+    // First, check admin table
+    $query_admin = "SELECT * FROM login WHERE username=? AND password=?";
+    $stmt_admin = mysqli_prepare($conn, $query_admin);
+    mysqli_stmt_bind_param($stmt_admin, "ss", $username, $password);
+    mysqli_stmt_execute($stmt_admin);
+    $result_admin = mysqli_stmt_get_result($stmt_admin);
+
+    if (mysqli_num_rows($result_admin) == 1) {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        $_SESSION['role'] = $user['position']; // Assuming 'position' column stores role
-        
-        // Redirect based on role
-        if($user['position'] == 'admin') {
-            header("Location: admin/admin.php");
-        } elseif($user['position'] == 'staff') {
-            header("Location: staff.php");
-        }
+        $_SESSION['role'] = 'admin'; // Manually set since login table has only admin
+
+        header("Location: admin/admin.php"); // Redirect to admin dashboard
         exit();
-    } else {
-        $error = "Invalid username or password";
     }
+
+    // If not found in admin table, check staff table
+    $query_staff = "SELECT * FROM staff WHERE username=? AND password=?";
+    $stmt_staff = mysqli_prepare($conn, $query_staff);
+    mysqli_stmt_bind_param($stmt_staff, "ss", $username, $password);
+    mysqli_stmt_execute($stmt_staff);
+    $result_staff = mysqli_stmt_get_result($stmt_staff);
+
+    if (mysqli_num_rows($result_staff) == 1) {
+        $user = mysqli_fetch_assoc($result_staff);
+
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        $_SESSION['role'] = $user['position']; // e.g., 'staff'
+
+        header("Location: staff/staff.php"); // Redirect to staff dashboard
+        exit();
+    }
+
+    // If neither admin nor staff found
+    $error = "Invalid username or password";
 }
 ?>

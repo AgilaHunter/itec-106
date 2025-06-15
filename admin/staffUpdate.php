@@ -40,69 +40,106 @@
 		$conn->close();
 	}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Update Staff</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- css bootstrap -->
+		<link rel="stylesheet" type="text/css" href="../bootstrap-5.0.2-dist\css\bootstrap.min.css">
+		<script type="text/javascript" src="../bootstrap-5.0.2-dist\js\bootstrap.min.js"></script>
+
+	<!-- external css -->
+		<link rel="stylesheet" type="text/css" href="../assets/forms.css">
+
+	<title>Update Staff Information</title>
 </head>
+
 <body>
-    <h1>Update Staff</h1>
 
-	<div id="table">
-	<form class="reg-container" method="POST" id="myForm">
+  	<div class="dashboard-wrapper p-2">
+  		<div class="card shadow">
+  			<div class="container p-3">
+  				<span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center bg-transparent shadow-sm" style="background-color: #493D9E; width: 50px; height: 50px;">
+  					<a href="staffRead.php"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> 
+  				</span>
+	  			<div class="container p-3 mt-5 mb-5" style="background-color: #f7f3ff; border-radius: 5px;">
+	  				<h5>Staff Information Update</h5>
+	  			</div>
+	  			<form action="#" method="POST" id="myForm">
 
-        <ul>
-		<li><a href="admin.php">Home</a></li>
-		<li><a href="index.php">Logout</a></li>
-		<li><a href="register.php">Add Staff</a></li>
-		<li><a href="staffRead.php">CRUD Staff Info</a></li>
-	</ul><br>
+					<h5 class="divider">Personal Information</h5>
+	  				<!-- Name -->
+	  				<div class="row g-2">
+	  					<div class="col">
+	  						<label>First Name</label>
+	  						<input type="text" class="form-control" placeholder="First Name" id="fname" name="fname" value="<?php echo $fname?>" required>
+	  					</div>
+	  					<div class="col">
+	  						<label>Middle Name</label>
+	  						<input type="text" class="form-control" placeholder="Middle Name" id="mname" name="mname" value="<?php echo $mname?>" required>
+	  					</div>
+	  					<div class="col">
+	  						<label>Last Name</label>
+	  						<input type="text" class="form-control" placeholder="Last Name" id="lname" name="lname" value="<?php echo $lname?>" required>
+	  					</div>
+	  				</div><br><br>
 
-        <!-- (Your existing HTML form fields remain the same) -->
+	  				<h5 class="divider">Address and Contact Details</h5>
+	  				<!-- Address -->
+	  				<div class="row g-5">
+	  					<div class="col">
+	  						<label>Street Name</label>
+	  						<input type="text" id="street" name="street" class="form-control" value="<?php echo $street?>" required><br>
+	  					</div>
+	  					<div class="col">
+	  						<label>Barangay</label>
+	  						<input type="text" id="barangay" name="barangay" class="form-control" value="<?php echo $barangay?>" required><br>
+	  					</div>
+	  					<div class="col">
+	  						<label>City</label>
+	  						<input type="text" id="city" name="city" class="form-control" placeholder="General Trias"  value="<?php echo $city?>" required><br>
+	  					</div>
+	  					<div class="col">
+	  						<label>Province</label>
+	  						<input type="text" id="province" name="province" class="form-control" placeholder="Cavite" value="<?php echo $province?>" required><br>
+	  					</div>
+	  					<div class="col">
+	  						<label>Postal Code</label>
+	  						<input type="number" id="postal" name="postal" class="form-control" placeholder="4107" value="<?php echo $postal?>" required><br>
+	  					</div>
+	  				</div>
 
-        <label>First Name</label>
-        <input type="text" id="fname" name="fname" value="<?php echo $fname?>" required><br>
+	  				<label>Contact Number</label>
+	  				<input type="tel" pattern="^\d{11}$" name="contact" class="form-control" value="0<?php echo $contact?>" required oninput="validateNumber(this)" /><br><br>
 
-        <label>Middle Name</label>
-        <input type="text" id="mname" name="mname" value="<?php echo $mname?>" required><br>
+	  				<h5 class="divider">Salary</h5>
+	  				<label>Monthly Salary</label>
+	  				<input type="number" step="0.01" id="salary" name="salary" class="form-control" placeholder="24000.00" value="<?php echo $salary?>" required><br><br>
 
-        <label>Last Name</label>
-        <input type="text" id="lname" name="lname" value="<?php echo $lname?>" required><br>
 
-        <label>Street Name</label>
-        <input type="text" id="street" name="street" value="<?php echo $street?>" required><br>
-        
-        <label>Barangay</label>
-        <input type="text" id="barangay" name="barangay" value="<?php echo $barangay?>" required><br>
+	  				<!-- Submit -->
+	  				<input type="submit" id="update" name="update" value="Update" class="btn btn col-12">
+	  				<input type="reset" id="clear" class="btn btn col-12">
+	  			</form>
 
-        <label>City</label>
-        <input type="text" id="city" name="city" value="<?php echo $city?>" required><br>
+	  			<script>
+	  			    document.getElementById("myForm").addEventListener("submit", function(event) {
+	  			        let isValid = true;
 
-        <label>Province</label>
-        <input type="text" id="province" name="province" value="<?php echo $province?>" required><br>
+	  			        if (!isValid) {
+	  			            event.preventDefault();
+	  			        }
+	  			    })
+	  			</script>
+	  		</div>
+  		</div>
+  	</div>
+	
+	<!-- Fontawesome Bundle -->
+	<script src="https://kit.fontawesome.com/0b5cc4708b.js" crossorigin="anonymous"></script>
 
-        <label>Postal Code</label>
-        <input type="number" id="postal" name="postal" value="<?php echo $postal?>" required><br>
-
-        <label>Contact Number</label>
-        <input type="tel" pattern="^\d{11}$" name="contact" value="0<?php echo $contact?>" required oninput="validateNumber(this)" /><br>
-
-        <label>Monthly Salary</label>
-        <input type="number" step="0.01" id="salary" name="salary" value="<?php echo $salary?>" required><br>
-
-        <button type="submit" name="update" id="button">Update Staff</button>
-        <input type="reset">
-        <a href="staffRead.php">Back</a>
-    </form>
-	</div>
-    <script>
-        document.getElementById("myForm").addEventListener("submit", function(event) {
-            let isValid = true;
-
-            if (!isValid) {
-                event.preventDefault();
-            }
-        })
-    </script>
 </body>
 </html>

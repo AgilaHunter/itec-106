@@ -1,7 +1,7 @@
 <?php
 	include("../dbconnect.php");
     include("../login.php");
-	$sql = "SELECT * FROM staff WHERE position = 'staff'";
+	$sql = "SELECT * FROM customer";
 	$result = $conn->query($sql);
 ?>
 
@@ -18,27 +18,28 @@
 	<!-- external css -->
 		<link rel="stylesheet" type="text/css" href="../assets/admindash_style.css">
 
-	<title>Staff Information Page</title>
+
+	<title>Customer Information Page</title>
 </head>
 
 <body>
 	
   	<div class="d-flex">
   		<!-- Sidebar -->
-  		<?php include 'sidebar.php'; ?>	
+  		<?php include 'sidebarstaff.php'; ?>	
 
 	  	<!-- Main Content -->
 	  	<div class="main-content">
 			<div class="dashboard-wrapper p-2">
 				<div class="container p-0 mt-4" style="background-color: #f7f3ff; border-radius: 5px;">
-					<h5>Staff Information Tab</h5>
+					<h5>Customer Information Tab</h5>
 				</div>
 
 				<!-- employee table dashboard -->
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 5px;">
-				    	<h5 class="m-0">Manage Staff</h5>
-				        <a href="register.php" class="btn" role="button">+ Add New Staff</a>
+				    	<h5 class="m-0">Manage Customers</h5>
+				        <a href="customerAdd.php" class="btn" role="button">+ Add New Customer</a>
 				    </div>
 
 				    <div class="table-responsive">
@@ -46,16 +47,16 @@
 				            <thead>
 				                <tr class="text-center">
 				                    <th>ID</th>
-				                    <th>Last Name</th>
 				                    <th>First Name</th>
 				                    <th>Middle Name</th>
+				                    <th>Last Name</th>
 				                    <th>Street</th>
 				                    <th>Barangay</th>
 				                    <th>City</th>
 				                    <th>Province</th>
 				                    <th>Postal Code</th>
-				                    <th>Contact Number</th>
-				                    <th>Monthly Salary</th>
+				                    <th>Contact No.</th>
+				                    <th>Date</th>
 				                    <th>Action</th>
 				                </tr>
 				            </thead>
@@ -67,24 +68,24 @@
 
 				            <tbody>
 				                <tr class="text-center">
-				                    <td class="sale"><?php echo $row['id'] ?></td>
-				                    <td class="sale"><?php echo $row['lname'] ?></td>
-				                    <td class="sale"><?php echo $row['fname'] ?></td>
-				                    <td class="sale"><?php echo $row['mname'] ?></td>
-				                    <td class="sale"><?php echo $row['street'] ?></td>
-				                    <td class="sale"><?php echo $row['barangay'] ?></td>
-				                    <td class="sale"><?php echo $row['city'] ?></td>
-				                    <td class="sale"><?php echo $row['province'] ?></td>
-				                    <td class="sale"><?php echo $row['postal'] ?></td>
-				                    <td class="sale">0<?php echo $row['contact'] ?></td>
-				                    <td class="sale"><?php echo $row['salary'] ?></td>
+				                    <td class="sale"><?php echo $row['c_id'] ?></td>
+				                    <td class="sale"><?php echo $row['c_fname'] ?></td>
+				                    <td class="sale"><?php echo $row['c_mname'] ?></td>
+				                    <td class="sale"><?php echo $row['c_lname'] ?></td>
+				                    <td class="sale"><?php echo $row['c_street'] ?></td>
+				                    <td class="sale"><?php echo $row['c_barangay'] ?></td>
+				                    <td class="sale"><?php echo $row['c_city'] ?></td>
+				                    <td class="sale"><?php echo $row['c_province'] ?></td>
+				                    <td class="sale"><?php echo $row['c_postal'] ?></td>
+				                    <td class="sale">0<?php echo $row['c_contact'] ?></td>
+				                    <td class="sale"><?php echo $row['date_created'] ?></td>
 
 				                    <td class="text-center">
 				                    	<span class="rounded-circle p-1 me-2 d-inline-flex justify-content-center align-items-center" style="background-color: #c9af00;width: 30px; height: 30px;">
-				                    		<a href="staffUpdate.php?id=<?php echo $row['id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></a></i>
+				                    		<a href="customerUpdate.php?c_id=<?php echo $row['c_id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></a></i>
 				                    	</span>
 				                    	<span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center" style="background-color: #c9001a; width: 30px; height: 30px;">
-				                    		<a href="staffDelete.php?id=<?php echo $row['id'] ?>"><i class="fa fa-trash" aria-hidden="true"></a></i>
+				                    		<a href="customerDelete.php?c_id=<?php echo $row['c_id'] ?>"><i class="fa fa-trash" aria-hidden="true"></a></i>
 				                    	</span>
 				                    </td>
 				                </tr>   

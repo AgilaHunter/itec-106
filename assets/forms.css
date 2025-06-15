@@ -76,6 +76,18 @@ label{
     color: whitesmoke;
 }
 
+#c_register{
+    background-color: #7107d0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+}
+
+#c_register:hover{
+    background-color: #5909a0;
+    color: whitesmoke;
+}
+
 #clear{
     background-color: lightgrey;
     margin-top: 10px;
@@ -85,5 +97,29 @@ label{
 
 #clear:hover{
     background-color: grey;
+    color: whitesmoke;
+}
+
+#update{
+   background-color: #7107d0;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   color: whitesmoke; 
+}
+
+#update:hover{
+    background-color: #5909a0;
+    color: whitesmoke;
+}
+
+#c_update{
+   background-color: #7107d0;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   color: whitesmoke; 
+}
+
+#c_update:hover{
+    background-color: #5909a0;
     color: whitesmoke;
 }

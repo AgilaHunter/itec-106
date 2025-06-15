@@ -5,6 +5,11 @@
     header("Location: ../login.php");
     exit();
 }
+	$sql = "SELECT id, fname, mname, lname FROM staff 
+			WHERE position = 'staff' 
+			ORDER BY id ASC LIMIT 5";
+	$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +25,6 @@
 	<!-- external css -->
 		<link rel="stylesheet" type="text/css" href="../assets/admindash_style.css">
 
-	<!-- google fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&family=Roboto&display=swap" rel="stylesheet">
 
 	<title>Admin Dashboard</title>
 </head>
@@ -76,7 +77,7 @@
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 55px;">
 				    	<h5 class="m-0">Manage Staff</h5>
-				        <a href="register.php" class="btn" role="button" name="adde">+ Add New Staff</a>
+				        <a href="register.php" class="btn" role="button">+ Add New Staff</a>
 				    </div>
 
 				    <div class="table-responsive">
@@ -89,14 +90,25 @@
 				                    <th>Middle Name</th>
 				                </tr>
 				            </thead>
+
+				            <?php
+				            	if($result->num_rows>0)
+				            	while($row=$result->fetch_assoc()){
+				            ?>
+
 				            <tbody>
 				                <tr class="text-center">
-				                    <td>0001</td>
-				                    <td>Regencia</td>
-				                    <td>Samantha Arabella</td>
-				                    <td>Redilla</td>
+				                    <td class="sale"><?php echo $row['id'] ?></td>
+				                    <td class="sale"><?php echo $row['lname'] ?></td>
+				                    <td class="sale"><?php echo $row['fname'] ?></td>
+				                    <td class="sale"><?php echo $row['mname'] ?></td>
 				                </tr>   
 	            			</tbody>
+
+	            			<?php
+	            				}
+	            			?>
+	            			
 	       				</table>
     				</div>
 				</div>
@@ -135,7 +147,7 @@
 				</div>
 
 				<div class="text-center p-2">
-					<p><a href="" class="text-secondary"> View more</a></p>
+					<p><a href="#" class="text-secondary"> View more</a></p>
 				</div>
 			</div>
 		</div>
