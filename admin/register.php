@@ -59,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['register'])){
         <div class="card shadow">
             <div class="container p-3">
                 <span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center bg-transparent shadow-sm" style="background-color: #493D9E; width: 50px; height: 50px;">
-                    <a href="staff.php"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> 
+                    <a href="staffRead.php"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> 
                 </span>
                 <div class="container p-3 mt-5 mb-5" style="background-color: #f7f3ff; border-radius: 5px;">
                     <h5>Staff Registration</h5>
@@ -87,13 +87,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['register'])){
                     <label>Name</label>
                     <div class="row g-2">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                            <input type="text" class="form-control" placeholder="First Name" id="fname" name="fname" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Middle Name" name="mname" required>
+                            <input type="text" class="form-control" placeholder="Middle Name" id="mname" name="mname" required>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+                            <input type="text" class="form-control" placeholder="Last Name" id="lname" name="lname" required>
                         </div>
                     </div><br><br>
 

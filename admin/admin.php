@@ -76,7 +76,7 @@
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 55px;">
 				    	<h5 class="m-0">Manage Staff</h5>
-				        <a href="register.php" class="btn" role="button" name="adde">+ Add New Staff</a>
+				        <a href="register.php" class="btn" role="button">+ Add New Staff</a>
 				    </div>
 
 				    <div class="table-responsive">
@@ -135,7 +135,7 @@
 				</div>
 
 				<div class="text-center p-2">
-					<p><a href="" class="text-secondary"> View more</a></p>
+					<p><a href="#" class="text-secondary"> View more</a></p>
 				</div>
 			</div>
 		</div>
