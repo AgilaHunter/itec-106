@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['username'] = $username;
         $_SESSION['role'] = $user['position']; // e.g., 'staff'
 
-        header("Location: st.php"); // Redirect to staff dashboard
+        header("Location: staff/staff.php"); // Redirect to staff dashboard
         exit();
     }
 
