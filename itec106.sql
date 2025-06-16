@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2025 at 04:06 PM
+-- Generation Time: Jun 17, 2025 at 01:33 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -70,6 +70,56 @@ INSERT INTO `login` (`username`, `password`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `contact` bigint(10) NOT NULL,
+  `address` text NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `customer_name`, `email`, `contact`, `address`, `product_id`, `quantity`, `total`, `order_date`) VALUES
+(1, 'Troy Aguiluz Cads Obligar', 'troyaguiluz@gmail.com', 9270673497, 'Blk 1 Lot 25 Richmond Townhomes', 2, 5, 2999.95, '2025-06-16 20:37:49'),
+(2, 'Paulyn Villanueva', 'paulyn@gmail.com', 9977609412, 'Blk 1 Lot 25 Peninsula Homes', 1, 5, 4499.95, '2025-06-16 20:46:57'),
+(3, 'Samantha Regencia', 'samantha@gmail.com', 9198675122, 'MS 4 Lancaster', 3, 5, 499.95, '2025-06-16 20:51:18'),
+(4, 'Johnny Test', 'test@test.com', 9198675122, 'test add', 1, 1, 899.99, '2025-06-16 21:05:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `stock` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `price`, `stock`) VALUES
+(1, 'laptop', 899.99, 10),
+(2, 'smartphone', 599.99, 15),
+(3, 'headphones', 99.99, 20);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `staff`
 --
 
@@ -109,6 +159,18 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`c_id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -123,6 +185,18 @@ ALTER TABLE `staff`
 --
 ALTER TABLE `customer`
   MODIFY `c_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `staff`
