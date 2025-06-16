@@ -52,7 +52,7 @@
 	<!-- external css -->
 		<link rel="stylesheet" type="text/css" href="../assets/forms.css">
 
-	<title>Update Staff Information</title>
+	<title>Update Customer Information</title>
 </head>
 
 <body>
@@ -64,7 +64,7 @@
   					<a href="customerRead.php"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> 
   				</span>
 	  			<div class="container p-3 mt-5 mb-5" style="background-color: #f7f3ff; border-radius: 5px;">
-	  				<h5>Staff Information Update</h5>
+	  				<h5>Customer Information Update</h5>
 	  			</div>
 	  			<form action="#" method="POST" id="myForm">
 
