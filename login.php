@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../dbconnect.php");
+include("dbconnect.php");
 
 if (isset($_POST['submit'])) {
     $username = $_POST['user'];
@@ -40,7 +40,11 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    // If neither admin nor staff found
-    $error = "Invalid username or password";
+    else{// If neither admin nor staff found
+    echo'<script>
+				window.location.href = "index.php";
+				alert("Login failed. Invalid username or password");
+				</script>';
+    }
 }
 ?>
