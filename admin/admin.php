@@ -86,7 +86,7 @@
 				    </div>
 
 				    <div class="table-responsive">
-				        <table class="table table-bordered w-100 m-0">
+				        <table class="table table-hover w-100 m-0">
 				            <thead>
 				                <tr class="text-center">
 				                    <th>ID</th>
@@ -130,7 +130,7 @@
 				    </div>
 
 				    <div class="table-responsive">
-				        <table class="table table-bordered w-100 m-0">
+				        <table class="table table-hover w-100 m-0">
 				            <thead>
 				                <tr class="text-center">
 				                    <th>ID</th>
