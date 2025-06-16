@@ -36,27 +36,27 @@
 
 				<!-- employee table dashboard -->
 				<div class="p-2" style="border-radius: 5px;">
-				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 5px;">
+				    <div class="d-flex justify-content-between align-items-center mb-4" style="margin-top: 5px;">
 				    	<h5 class="m-0">Manage Staff</h5>
 				        <a href="register.php" class="btn" role="button">+ Add New Staff</a>
 				    </div>
 
 				    <div class="table-responsive">
-				        <table class="table table-bordered m-0" id="performance">
-				            <thead>
+				        <table class="table table-sm table-hover m-0" id="performance">
+				            <thead class="align-middle">
 				                <tr class="text-center">
-				                    <th>ID</th>
-				                    <th>Last Name</th>
-				                    <th>First Name</th>
-				                    <th>Middle Name</th>
-				                    <th>Street</th>
-				                    <th>Barangay</th>
-				                    <th>City</th>
-				                    <th>Province</th>
-				                    <th>Postal Code</th>
-				                    <th>Contact Number</th>
-				                    <th>Monthly Salary</th>
-				                    <th>Action</th>
+				                    <th class="p-2">ID</th>
+				                    <th class="p-2">Last Name</th>
+				                    <th class="p-2">First Name</th>
+				                    <th class="p-2">Middle Name</th>
+				                    <th class="p-2">Street</th>
+				                    <th class="p-2">Barangay</th>
+				                    <th class="p-2">City</th>
+				                    <th class="p-2">Province</th>
+				                    <th class="p-2">Postal Code</th>
+				                    <th class="p-2">Contact Number</th>
+				                    <th class="p-2">Monthly Salary</th>
+				                    <th class="p-2">Action</th>
 				                </tr>
 				            </thead>
 
@@ -65,27 +65,29 @@
 				            	while($row=$result->fetch_assoc()){
 				            ?>
 
-				            <tbody>
+				            <tbody class="align-middle">
 				                <tr class="text-center">
-				                    <td class="sale"><?php echo $row['id'] ?></td>
-				                    <td class="sale"><?php echo $row['lname'] ?></td>
-				                    <td class="sale"><?php echo $row['fname'] ?></td>
-				                    <td class="sale"><?php echo $row['mname'] ?></td>
-				                    <td class="sale"><?php echo $row['street'] ?></td>
-				                    <td class="sale"><?php echo $row['barangay'] ?></td>
-				                    <td class="sale"><?php echo $row['city'] ?></td>
-				                    <td class="sale"><?php echo $row['province'] ?></td>
-				                    <td class="sale"><?php echo $row['postal'] ?></td>
-				                    <td class="sale">0<?php echo $row['contact'] ?></td>
-				                    <td class="sale"><?php echo $row['salary'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['id'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['lname'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['fname'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['mname'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['street'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['barangay'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['city'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['province'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['postal'] ?></td>
+				                    <td class="sale p-2">0<?php echo $row['contact'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['salary'] ?></td>
 
 				                    <td class="text-center">
-				                    	<span class="rounded-circle p-1 me-2 d-inline-flex justify-content-center align-items-center" style="background-color: #c9af00;width: 30px; height: 30px;">
-				                    		<a href="staffUpdate.php?id=<?php echo $row['id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></a></i>
-				                    	</span>
-				                    	<span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center" style="background-color: #c9001a; width: 30px; height: 30px;">
-				                    		<a href="staffDelete.php?id=<?php echo $row['id'] ?>"><i class="fa fa-trash" aria-hidden="true"></a></i>
-				                    	</span>
+				                    	<div class="d-flex justify-content-center gap-2 flex-wrap p-1">
+				                    		<a href="staffUpdate.php?id=<?php echo $row['id'] ?>" class="d-inline-flex justify-content-center align-items-center rounded-circle text-decoration-none" style="background-color: #c9af00; width: 30px; height: 30px;">
+				                    			<i class="fa fa-pencil text-white" aria-hidden="true"></i>
+				                    		</a>
+				                    		<a href="staffDelete.php?id=<?php echo $row['id'] ?>" class="d-inline-flex justify-content-center align-items-center rounded-circle text-decoration-none" style="background-color: #c9001a; width: 30px; height: 30px;">
+				                    			<i class="fa fa-trash text-white" aria-hidden="true"></i>
+				                    		</a>
+				                    	</div>
 				                    </td>
 				                </tr>   
 	            			</tbody>
