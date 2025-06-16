@@ -32,10 +32,6 @@ session_start();
                 <div class="card show mx-auto">
 
                     <h4><b>Login</b></h4>
-
-                    <?php if(isset($error)) { ?>
-                        <p class="error"><?php echo $error; ?></p>
-                    <?php } ?>
                     
                     <form name="form" action="login.php" method="POST">
                         <div class="container">
