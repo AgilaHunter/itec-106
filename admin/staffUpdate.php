@@ -5,6 +5,9 @@
 	$result = $conn->query($sql);
 	$row = $result->fetch_assoc();
 
+	$user = $row['username'];
+	$password = $row['password'];
+	$confirm = $row['confirm'];
 	$lname = $row['lname'];
 	$fname = $row['fname'];
 	$mname = $row['mname'];
@@ -17,6 +20,9 @@
 	$salary = $row['salary'];
 
 	if(isset($_POST['update'])){
+		$user = $_POST['user'];
+		$password = $_POST['password'];
+		$confirm = $_POST['confirm'];
 		$lname = $_POST['lname'];
     	$fname = $_POST['fname'];
 	    $mname = $_POST['mname'];
@@ -28,7 +34,7 @@
 	    $contact = $_POST['contact'];
 	    $salary = $_POST['salary'];
 
-		$sql = "UPDATE `staff` SET `lname` = '$lname',`fname` = '$fname', `mname` = '$mname', `street` = '$street', `barangay` = '$barangay', `city` = '$city', `province` = '$province', `postal` = '$postal', `contact` = '$contact', `salary` = '$salary' WHERE `id`='$id'";
+		$sql = "UPDATE `staff` SET `username` = '$user',`lname` = '$lname',`fname` = '$fname', `mname` = '$mname', `street` = '$street', `barangay` = '$barangay', `city` = '$city', `province` = '$province', `postal` = '$postal', `contact` = '$contact', `salary` = '$salary', `password` = '$password', `confirm` = '$confirm' WHERE `id`='$id'";
 		$result = $conn->query($sql);
 
 		if($result){
@@ -69,6 +75,24 @@
 	  				<h5>Staff Information Update</h5>
 	  			</div>
 	  			<form action="#" method="POST" id="myForm">
+
+					<h5 class="divider">Work Credentials</h5>
+					<div class="row g-2">
+						<div class="col">
+	  						<label>Username</label>
+	  						<input type="text" class="form-control" placeholder="First Name" id="user" name="user" value="<?php echo $user?>" required>
+	  					</div>
+						<div class="col">
+	  						<label>Password</label>
+	  						<input type="text" class="form-control" placeholder="First Name" id="password" name="password" value="<?php echo $password?>" required>
+							<small id="passwordError" style="color: red;"></small>
+	  					</div>
+						<div class="col">
+	  						<label>Confirm Password</label>
+	  						<input type="text" class="form-control" placeholder="First Name" id="confirm" name="confirm" value="<?php echo $confirm?>" required>
+							<small id="confirmError" style="color: red;"></small>
+	  					</div>
+					</div>
 
 					<h5 class="divider">Personal Information</h5>
 	  				<!-- Name -->
@@ -126,13 +150,54 @@
 	  			</form>
 
 	  			<script>
-	  			    document.getElementById("myForm").addEventListener("submit", function(event) {
-	  			        let isValid = true;
+	  			    //document.getElementById("myForm").addEventListener("submit", function(event) {
+	  			        //let isValid = true;
 
-	  			        if (!isValid) {
-	  			            event.preventDefault();
-	  			        }
-	  			    })
+	  			        //if (!isValid) {
+	  			            //event.preventDefault();
+	  			        //}
+	  			    //})
+
+					document.getElementById("myForm").addEventListener("submit", function(event) {
+            const password = document.getElementById("password").value;
+            const confirm = document.getElementById("confirm").value;
+            let isValid = true;
+
+            // Reset error messages
+            document.getElementById("passwordError").textContent = "";
+            document.getElementById("confirmError").textContent = "";
+
+            // Validate password length
+            if (password.length < 6) {
+                document.getElementById("passwordError").textContent = "Password must be at least 6 characters";
+                isValid = false;
+            }
+
+            // Check if passwords match
+            if (password !== confirm) {
+                document.getElementById("confirmError").textContent = "Passwords do not match";
+                isValid = false;
+            }
+
+            // Check for at least one number, letter, and special character
+            if (!/\d/.test(password)) {
+                document.getElementById("passwordError").textContent = "Password must contain at least one number";
+                isValid = false;
+            }
+            if (!/[A-Za-z]/.test(password)) {
+                document.getElementById("passwordError").textContent = "Password must contain at least one letter";
+                isValid = false;
+            }
+            if (!/[^\w]/.test(password)) {
+                document.getElementById("passwordError").textContent = "Password must contain at least one special character";
+                isValid = false;
+            }
+
+            // Stop submission if invalid
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
 	  			</script>
 	  		</div>
   		</div>

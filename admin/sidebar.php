@@ -11,18 +11,23 @@
   </div>
   <ul class="nav flex-column">
     <li class="nav-item">
-      <a href="index.php" class="nav-link <?php echo ($currentPage == 'admin.php') ? 'active' : ''; ?>">
+      <a href="admin.php" class="nav-link <?php echo ($currentPage == 'admin.php') ? 'active' : ''; ?>">
         <i class="fa fa-home pe-2"></i><span>Home</span>
       </a>
     </li>
     <li class="nav-item">
-      <a href="staff.php" class="nav-link <?php echo ($currentPage == 'staffRead.php') ? 'active' : ''; ?>">
+      <a href="staffRead.php" class="nav-link <?php echo ($currentPage == 'staffRead.php') ? 'active' : ''; ?>">
         <i class="fa fa-user pe-2"></i><span>Staff Information</span>
       </a>
     </li>
     <li class="nav-item">
       <a href="report.php" class="nav-link <?php echo ($currentPage == 'report.php') ? 'active' : ''; ?>">
         <i class="fa fa-chart-line pe-2"></i><span>Report</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="inventory.php" class="nav-link <?php echo ($currentPage == 'inventory.php') ? 'active' : ''; ?>">
+        <i class="fa fa-chart-line pe-2"></i><span>Inventory</span>
       </a>
     </li>
     <hr>
