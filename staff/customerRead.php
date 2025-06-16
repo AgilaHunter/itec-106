@@ -81,12 +81,14 @@
 				                    <td class="sale"><?php echo $row['date_created'] ?></td>
 
 				                    <td class="text-center">
-				                    	<span class="rounded-circle p-1 me-2 d-inline-flex justify-content-center align-items-center" style="background-color: #c9af00;width: 30px; height: 30px;">
-				                    		<a href="customerUpdate.php?c_id=<?php echo $row['c_id'] ?>"><i class="fa fa-pencil" aria-hidden="true"></a></i>
-				                    	</span>
-				                    	<span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center" style="background-color: #c9001a; width: 30px; height: 30px;">
-				                    		<a href="customerDelete.php?c_id=<?php echo $row['c_id'] ?>"><i class="fa fa-trash" aria-hidden="true"></a></i>
-				                    	</span>
+				                    	<div class="d-flex justify-content-center gap-2 flex-wrap">
+				                    		<a href="staffUpdate.php?c_id=<?php echo $row['c_id'] ?>" class="d-inline-flex justify-content-center align-items-center rounded-circle text-decoration-none" style="background-color: #c9af00; width: 30px; height: 30px;">
+				                    			<i class="fa fa-pencil text-white" aria-hidden="true"></i>
+				                    		</a>
+				                    		<a href="staffDelete.php?c_id=<?php echo $row['c_id'] ?>" class="d-inline-flex justify-content-center align-items-center rounded-circle text-decoration-none" style="background-color: #c9001a; width: 30px; height: 30px;">
+				                    			<i class="fa fa-trash text-white" aria-hidden="true"></i>
+				                    		</a>
+				                    	</div>
 				                    </td>
 				                </tr>   
 	            			</tbody>

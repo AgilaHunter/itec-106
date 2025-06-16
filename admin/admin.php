@@ -10,6 +10,11 @@
 			ORDER BY id ASC LIMIT 5";
 	$result = $conn->query($sql);
 
+	// Total Staff Count
+	$staffCountQuery = "SELECT COUNT(*) as total_staff FROM staff WHERE position = 'staff'";
+	$staffCountResult = $conn->query($staffCountQuery);
+	$staffCount = $staffCountResult->fetch_assoc()['total_staff'];
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +51,7 @@
 					<div class="dashboard-card shadow d-flex align-items-center p-3">
 						<i class="fa-solid fa-user-group me-3 ms-3 mt-2 fs-4"></i>
 						<div>
-							<div class="card-title">10</div>
+							<div class="card-title"><?php echo $staffCount; ?></div>
 							<div class="card-subtitle">Staff</div>
 						</div>
 					</div>
