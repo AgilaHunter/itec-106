@@ -1,6 +1,12 @@
 <?php 
     include("../dbconnect.php");
     include("../login.php");
+    if(!isset($_SESSION['loggedin']) || $_SESSION['role'] != 'staff') {
+        header("Location: login.php");
+        exit();
+    }
+
+    $staff_id = $_SESSION['staff_id'];
 
     $sql = "
         SELECT 
@@ -9,10 +15,13 @@
             MAX(o.order_date) AS last_order_date
         FROM customer c
         LEFT JOIN orders o ON o.cid = c.c_id
+        WHERE o.staff_id = ? 
         GROUP BY c.c_id
     ";
-
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $staff_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +72,7 @@
 				                    <th class="p-2">Address</th>
 				                    <th class="p-2">Date Created</th>
 				                    <th class="p-2">Times Ordered</th>
-				                    <th class="p-2">Last Order</th>
+				                    <th class="p-2">Last Ordered</th>
 
 				                </tr>
 				            </thead>

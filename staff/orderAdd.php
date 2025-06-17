@@ -1,11 +1,16 @@
 <?php
+session_start();
 include("../dbconnect.php");
+if (empty($_SESSION['staff_id'])) {
+    die("Error: No staff assigned. Please log in again.");
+}
 
 // Initialize variables
+$cid = ''; // Ensure $cid is initialized
 $customer_name = $email = $contact = $address = $product_id = $quantity = '';
 $order_success = false;
 $errors = [];
-$cid = ''; // Ensure $cid is initialized
+
 
 // Fetch products from database
 $products = [];
@@ -26,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = trim($_POST['address']);
     $product_id = intval($_POST['product_id']);
     $quantity = intval($_POST['quantity']);
+
+    $staff_id = $_SESSION['staff_id'] ?? 0; // Always use the logged-in staff
 
     // Validation
     if (empty($customer_name)) $errors[] = "Name is required";
@@ -50,6 +57,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         $total = $selected_product['price'] * $quantity;
 
+        // to tell wos the staff
+        $staff_name = ''; // default value
+        $stmt = $conn->prepare("SELECT fname, mname, lname FROM staff WHERE id = ?");
+        $stmt->bind_param("i", $staff_id);  // $staff_id comes from $_POST or $_SESSION
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $staff_name = trim($row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname']);
+            $_SESSION['staff_name'] = $staff_name;  // Store for display
+        } else {
+            $errors[] = "Staff not found!";
+        }
+
         // Check if customer exists
         $stmt = $conn->prepare("SELECT c_id FROM customer WHERE c_fullname = ? AND c_email = ?");
         $stmt->bind_param("ss", $name, $email);
@@ -60,16 +81,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $customer = $result->fetch_assoc();
             $cid = $customer['c_id'];
         } else {
-            // Insert new customer
-            $stmt = $conn->prepare("INSERT INTO customer (c_fullname, c_email, c_contact, c_address) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $customer_name, $email, $contact, $address);
-            $stmt->execute();
-            $cid = $stmt->insert_id;
+
+        // Insert new customer
+        $stmt = $conn->prepare("INSERT INTO customer (c_fullname, c_email, c_contact, c_address) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $customer_name, $email, $contact, $address);
+        $stmt->execute();
+
+        //Get the new customer ID
+        $cid = $stmt->insert_id;
         }
 
+        $staff_id = $_POST['staff_id'] ?? $_SESSION['staff_id'] ?? 0;
+
         // Insert order
-        $stmt = $conn->prepare("INSERT INTO orders (cid, customer_name, email, contact, address, product_id, quantity, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("issssiid", $cid, $customer_name, $email, $contact, $address, $product_id, $quantity, $total);
+        $stmt = $conn->prepare("INSERT INTO orders (staff_id, cid, customer_name, email, contact, address, product_id, quantity, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iissssiid", $staff_id, $cid, $customer_name, $email, $contact, $address, $product_id, $quantity, $total);
+
+        echo '<script>document.getElementById("cid1").value = "' . $cid . '";</script>';
 
         if ($stmt->execute()) {
             // Update stock
@@ -122,13 +150,18 @@ $conn->close();
 
                 <form action="#" method="POST">
 
-
                     <h5 class="divider">Details</h5>
+
+                    <!-- Staff who assisted. -->
+                    <label>Assisted by: </label>
+                    <input type="text" class="form-control" value="<?php echo htmlspecialchars($_SESSION['staff_name'] ?? '[No staff]'); ?>" disabled>
+                    <!-- Pass staff_id to form -->
+                    <input type="hidden" name="staff_id" value="<?php echo $_SESSION['staff_id'] ?? ''; ?>"><br>
 
                     <!-- Customer No. -->
                     <label>Customer ID</label>
-                    <input type="text" id="cid1" class="form-control mb-3" disabled>
-                    <input type="hidden" id="cid" value="<?php echo htmlspecialchars($cid); ?>" name="cid">
+                    <input type="text" id="cid1" class="form-control mb-3" value="<?php echo htmlspecialchars($cid); ?>" disabled>
+                    <input type="hidden" id="cid" name="cid" value="<?php echo htmlspecialchars($cid); ?>">
 
                     <!-- Fullname -->
                     <label for="customer_name">Full Name</label>

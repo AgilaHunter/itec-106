@@ -1,7 +1,7 @@
 <?php
     include("../dbconnect.php");
     include("../login.php");
-    $sql = "SELECT * FROM orders";
+    $sql = "SELECT * FROM orders ORDER BY order_date DESC";
     $result = $conn->query($sql);
 ?>
 
