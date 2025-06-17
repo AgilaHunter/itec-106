@@ -122,6 +122,7 @@ $conn->close();
 
                 <form action="#" method="POST">
 
+
                     <h5 class="divider">Details</h5>
 
                     <!-- Customer No. -->

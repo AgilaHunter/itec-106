@@ -73,9 +73,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['register'])){
                     <!-- Submit -->
                     <input type="submit" id="register" name="register" value="Register" class="btn btn btn col-12">
                     <input type="reset" id="clear" class="btn btn btn col-12">
-                </form>
+                </form>   
+
     <!-- Fontawesome Bundle -->
-    <script src="https://kit.fontawesome.com/0b5cc4708b.js" crossorigin="anonymous"></script>   
+    <script src="https://kit.fontawesome.com/0b5cc4708b.js" crossorigin="anonymous"></script>
 
     <!-- JavaScript Validation -->
     <script>

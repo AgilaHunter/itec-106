@@ -84,12 +84,12 @@
 	  					</div>
 						<div class="col">
 	  						<label>Password</label>
-	  						<input type="text" class="form-control" placeholder="First Name" id="password" name="password" value="<?php echo $password?>" required>
+	  						<input type="password" class="form-control" placeholder="First Name" id="password" name="password" value="<?php echo $password?>" required>
 							<small id="passwordError" style="color: red;"></small>
 	  					</div>
 						<div class="col">
 	  						<label>Confirm Password</label>
-	  						<input type="text" class="form-control" placeholder="First Name" id="confirm" name="confirm" value="<?php echo $confirm?>" required>
+	  						<input type="password" class="form-control" placeholder="First Name" id="confirm" name="confirm" value="<?php echo $confirm?>" required>
 							<small id="confirmError" style="color: red;"></small>
 	  					</div>
 					</div>
