@@ -154,7 +154,7 @@ $conn->close();
                             <option value="<?php echo $product['id']; ?>" 
                                 <?php if ($product_id == $product['id']) echo 'selected'; ?>>
                                 <?php echo htmlspecialchars($product['name']); ?> - 
-                                $<?php echo number_format($product['price'], 2); ?> 
+                                ₱<?php echo number_format($product['price'], 2); ?> 
                                 (<?php echo $product['stock']; ?> in stock)
                             </option>
                         <?php endforeach; ?>

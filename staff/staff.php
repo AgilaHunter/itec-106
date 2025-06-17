@@ -48,8 +48,8 @@ $result = $conn->query($sql);
                 <!-- customer table dashboard -->
                 <div class="p-2" style="border-radius: 5px;">
                     <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 10px;">
-                        <h5 class="m-0">Manage Customers</h5>
-                        <a href="customerAdd.php" class="btn" role="button">+ Add New Customer</a>
+                        <h5 class="m-0">Customers</h5>
+                        
                     </div>
 
                     <div class="table-responsive">
