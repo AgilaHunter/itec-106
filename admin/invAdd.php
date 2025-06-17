@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['register'])){
         <div class="card shadow">
             <div class="container p-3">
                 <span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center bg-transparent shadow-sm" style="background-color: #493D9E; width: 50px; height: 50px;">
-                    <a href="staffRead.php"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> 
+                    <a href="inventory.php"><i class="fa fa-arrow-left" aria-hidden="true"></a></i> 
                 </span>
                 <div class="container p-3 mt-5 mb-5" style="background-color: #f7f3ff; border-radius: 5px;">
                     <h5>Add Product</h5>
@@ -73,7 +73,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['register'])){
                     <!-- Submit -->
                     <input type="submit" id="register" name="register" value="Register" class="btn btn btn col-12">
                     <input type="reset" id="clear" class="btn btn btn col-12">
-                </form>   
+                </form>
+    <!-- Fontawesome Bundle -->
+    <script src="https://kit.fontawesome.com/0b5cc4708b.js" crossorigin="anonymous"></script>   
 
     <!-- JavaScript Validation -->
     <script>

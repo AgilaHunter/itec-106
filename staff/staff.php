@@ -6,7 +6,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['role'] != 'staff') {
     exit();
 }
 
-$sql = "SELECT c_id, c_fname, c_mname, c_lname FROM customer 
+$sql = "SELECT c_id, c_fullname FROM customer 
         ORDER BY c_id ASC LIMIT 5";
 $result = $conn->query($sql);
 ?>
@@ -57,9 +57,7 @@ $result = $conn->query($sql);
                             <thead>
                                 <tr class="text-center">
                                     <th>ID</th>
-                                    <th>First Name</th>
-                                    <th>Middle Name</th>
-                                    <th>Last Name</th>
+                                    <th>Full Name</th>
                                 </tr>
                             </thead>
 
@@ -71,9 +69,7 @@ $result = $conn->query($sql);
                             <tbody>
                                 <tr class="text-center">
                                     <td class="sale"><?php echo $row['c_id'] ?></td>
-                                    <td class="sale"><?php echo $row['c_fname'] ?></td>
-                                    <td class="sale"><?php echo $row['c_mname'] ?></td>
-                                    <td class="sale"><?php echo $row['c_lname'] ?></td>
+                                    <td class="sale"><?php echo $row['c_fullname'] ?></td>
                                 </tr>   
                             </tbody>
 

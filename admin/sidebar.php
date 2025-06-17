@@ -27,7 +27,7 @@
     </li>
     <li class="nav-item">
       <a href="inventory.php" class="nav-link <?php echo ($currentPage == 'inventory.php') ? 'active' : ''; ?>">
-        <i class="fa fa-chart-line pe-2"></i><span>Inventory</span>
+        <i class="fa fa-list-alt pe-2"></i><span>Inventory</span>
       </a>
     </li>
     <hr>

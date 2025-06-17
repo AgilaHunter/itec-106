@@ -1,8 +1,18 @@
-<?php
-	include("../dbconnect.php");
+<?php 
+    include("../dbconnect.php");
     include("../login.php");
-	$sql = "SELECT * FROM customer";
-	$result = $conn->query($sql);
+
+    $sql = "
+        SELECT 
+            c.*,
+            COUNT(o.id) AS order_count,
+            MAX(o.order_date) AS last_order_date
+        FROM customer c
+        LEFT JOIN orders o ON o.cid = c.c_id
+        GROUP BY c.c_id
+    ";
+
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -39,25 +49,22 @@
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-4" style="margin-top: 5px;">
 				    	<h5 class="m-0">Manage Customers</h5>
-				        <a href="customerAdd.php" class="btn" role="button">+ Add New Customer</a>
+
 				    </div>
 
 				    <div class="table-responsive">
 				        <table class="table table-sm table-hover m-0" id="performance">
 				            <thead class="align-middle">
 				                <tr class="text-center">
-				                    <th class="p-2">ID</th>
-				                    <th class="p-2">First Name</th>
-				                    <th class="p-2">Middle Name</th>
-				                    <th class="p-2">Last Name</th>
-				                    <th class="p-2">Street</th>
-				                    <th class="p-2">Barangay</th>
-				                    <th class="p-2">City</th>
-				                    <th class="p-2">Province</th>
-				                    <th class="p-2">Postal Code</th>
-				                    <th class="p-2">Contact No.</th>
-				                    <th class="p-2">Date</th>
-				                    <th class="p-2">Action</th>
+				                    <th class="p-2">Customer ID</th>
+				                    <th class="p-2">Full Name</th>
+				                    <th class="p-2">Email</th>
+				                    <th class="p-2">Contact</th>
+				                    <th class="p-2">Address</th>
+				                    <th class="p-2">Date Created</th>
+				                    <th class="p-2">Times Ordered</th>
+				                    <th class="p-2">Last Order</th>
+
 				                </tr>
 				            </thead>
 
@@ -69,27 +76,14 @@
 				            <tbody class="align-middle">
 				                <tr class="text-center">
 				                    <td class="sale p-2"><?php echo $row['c_id'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_fname'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_mname'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_lname'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_street'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_barangay'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_city'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_province'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['c_postal'] ?></td>
-				                    <td class="sale p-2">0<?php echo $row['c_contact'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['c_fullname'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['c_email'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['c_contact'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['c_address'] ?></td>
 				                    <td class="sale p-2"><?php echo $row['date_created'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['order_count'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['last_order_date'] ?></td>
 
-				                    <td class="text-center">
-				                    	<div class="d-flex justify-content-center gap-2 flex-wrap p-1">
-				                    		<a href="customerUpdate.php?c_id=<?php echo $row['c_id'] ?>" class="d-inline-flex justify-content-center align-items-center rounded-circle text-decoration-none" style="background-color: #c9af00; width: 30px; height: 30px;">
-				                    			<i class="fa fa-pencil text-white" aria-hidden="true"></i>
-				                    		</a>
-				                    		<a href="customerDelete.php?c_id=<?php echo $row['c_id'] ?>" class="d-inline-flex justify-content-center align-items-center rounded-circle text-decoration-none" style="background-color: #c9001a; width: 30px; height: 30px;">
-				                    			<i class="fa fa-trash text-white" aria-hidden="true"></i>
-				                    		</a>
-				                    	</div>
-				                    </td>
 				                </tr>   
 	            			</tbody>
 	            			<?php
