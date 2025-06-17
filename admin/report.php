@@ -4,7 +4,8 @@
     // Modified SQL query to join with products table
     $sql = "SELECT o.*, p.name as product_name, p.price as price 
             FROM orders o 
-            LEFT JOIN products p ON o.product_id = p.id";
+            LEFT JOIN products p ON o.product_id = p.id
+            ORDER BY o.order_date DESC";
     $result = $conn->query($sql);
 ?>
 

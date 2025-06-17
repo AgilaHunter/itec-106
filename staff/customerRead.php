@@ -15,13 +15,10 @@
             MAX(o.order_date) AS last_order_date
         FROM customer c
         LEFT JOIN orders o ON o.cid = c.c_id
-        WHERE o.staff_id = ? 
         GROUP BY c.c_id
+        ORDER BY last_order_date DESC
     ";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $staff_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>

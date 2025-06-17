@@ -1,8 +1,23 @@
 <?php
+    session_start();
     include("../dbconnect.php");
-    include("../login.php");
-    $sql = "SELECT * FROM orders ORDER BY order_date DESC";
-    $result = $conn->query($sql);
+    if(!isset($_SESSION['loggedin']) || $_SESSION['role'] != 'staff') {
+        header("Location: login.php");
+        exit();
+    }
+    $orders_sql = 
+        "
+        SELECT 
+            o.*
+        FROM orders o
+        LEFT JOIN customer c ON o.cid = c.c_id
+        WHERE o.staff_id = ?
+        ORDER BY o.order_date DESC
+        ";
+    $orders_stmt = $conn->prepare($orders_sql);
+    $orders_stmt->bind_param("i", $_SESSION['staff_id']); // Use the correct session variable
+    $orders_stmt->execute();
+    $orders_result = $orders_stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -58,21 +73,21 @@
                             </thead>
 
                             <?php
-                                if($result->num_rows>0)
-                                while($row=$result->fetch_assoc()){
+                                if($orders_result->num_rows>0)
+                                while($order=$orders_result->fetch_assoc()){
                             ?>
 
                             <tbody class="align-middle">
                                 <tr class="text-center">
-                                    <td class="sale p-2"><?php echo $row['id'] ?></td>
-                                    <td class="sale p-2"><?php echo $row['customer_name'] ?></td>
-                                    <td class="sale p-2"><?php echo $row['email'] ?></td>
-                                    <td class="sale p-2"><?php echo $row['contact'] ?></td>
-                                    <td class="sale p-2"><?php echo $row['address'] ?></td>
-                                    <td class="sale p-2"><?php echo $row['product_id'] ?></td>
-                                    <td class="sale p-2"><?php echo $row['quantity'] ?></td>
-                                    <td class="sale p-2">₱<?php echo $row['total'] ?></td>
-                                    <td class="sale p-2"><?php echo $row['order_date'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['id'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['customer_name'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['email'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['contact'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['address'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['product_id'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['quantity'] ?></td>
+                                    <td class="sale p-2">₱<?php echo $order['total'] ?></td>
+                                    <td class="sale p-2"><?php echo $order['order_date'] ?></td>
                                 </tr>   
                             </tbody>
                             <?php
