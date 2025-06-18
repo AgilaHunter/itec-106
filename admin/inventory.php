@@ -18,7 +18,7 @@
 	<!-- external css -->
 		<link rel="stylesheet" type="text/css" href="../assets/admindash_style.css">
 
-	<title>Order Information Page</title>
+	<title>Inventory</title>
 </head>
 
 <body>
@@ -31,13 +31,13 @@
 	  	<div class="main-content">
 			<div class="dashboard-wrapper p-2">
 				<div class="container p-0 mt-4" style="background-color: #f7f3ff; border-radius: 5px;">
-					<h5>Order Information Tab</h5>
+					<h5>Inventory Tab</h5>
 				</div>
 
 				<!-- employee table dashboard -->
 				<div class="p-2" style="border-radius: 5px;">
 				    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 5px;">
-				    	<h5 class="m-0">Manage Order</h5>
+				    	<h5 class="m-0">Manage Products</h5>
 				        <a href="invAdd.php" class="btn" role="button">+ Add Product</a>
 				    </div>
 

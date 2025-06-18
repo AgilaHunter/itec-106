@@ -4,7 +4,8 @@
     // Modified SQL query to join with products table
     $sql = "SELECT o.*, p.name as product_name, p.price as price 
             FROM orders o 
-            LEFT JOIN products p ON o.product_id = p.id";
+            LEFT JOIN products p ON o.product_id = p.id
+            ORDER BY o.order_date DESC";
     $result = $conn->query($sql);
 ?>
 
@@ -77,10 +78,10 @@
                                     <td class="sale"><?php echo $row['order_date'] ?></td>
 
                                     <td class="text-center">
-				                    	<span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center" style="background-color: #c9001a; width: 30px; height: 30px;">
-				                    		<a href="reportDelete.php?id=<?php echo $row['id'] ?>"><i class="fa fa-trash" aria-hidden="true"></a></i>
-				                    	</span>
-				                    </td>
+                                        <span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center" style="background-color: #c9001a; width: 30px; height: 30px;">
+                                            <a href="reportDelete.php?id=<?php echo $row['id'] ?>"><i class="fa fa-trash" aria-hidden="true"></a></i>
+                                        </span>
+                                    </td>
                                 </tr>   
                             </tbody>
                             <?php

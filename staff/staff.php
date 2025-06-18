@@ -6,9 +6,40 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['role'] != 'staff') {
     exit();
 }
 
-$sql = "SELECT c_id, c_fname, c_mname, c_lname FROM customer 
-        ORDER BY c_id ASC LIMIT 5";
+$staff_id = $_SESSION['staff_id'];
+
+$sql = "
+    SELECT 
+        c.c_id, 
+        c.c_fullname, 
+        COUNT(o.id) AS order_count,
+        MAX(o.order_date) AS last_order_date
+    FROM customer c
+    LEFT JOIN orders o ON o.cid = c.c_id
+    GROUP BY c.c_id
+    ORDER BY last_order_date DESC
+    LIMIT 5
+";
 $result = $conn->query($sql);
+
+ $orders_sql = "
+    SELECT 
+        o.id AS order_id,
+        c.c_fullname,
+        o.quantity,
+        o.total,
+        o.order_date
+    FROM orders o
+    LEFT JOIN customer c ON o.cid = c.c_id
+    WHERE o.staff_id = ?
+    ORDER BY o.order_date DESC
+    LIMIT 5
+";
+$orders_stmt = $conn->prepare($orders_sql);
+$orders_stmt->bind_param("i", $_SESSION['staff_id']); // Use the correct session variable
+$orders_stmt->execute();
+$orders_result = $orders_stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -47,19 +78,19 @@ $result = $conn->query($sql);
     
                 <!-- customer table dashboard -->
                 <div class="p-2" style="border-radius: 5px;">
-                    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 10px;">
-                        <h5 class="m-0">Manage Customers</h5>
-                        <a href="customerAdd.php" class="btn" role="button">+ Add New Customer</a>
+                    <div class="d-flex justify-content-between align-items-center mb-4" style="margin-top: 10px;">
+                        <h5 class="m-0">Customers</h5>
+                        
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover w-100 m-0">
-                            <thead>
+                        <table class="table table-sm table-hover m-0">
+                            <thead class="align-middle">
                                 <tr class="text-center">
-                                    <th>ID</th>
-                                    <th>First Name</th>
-                                    <th>Middle Name</th>
-                                    <th>Last Name</th>
+                                    <th class="p-2">Customer ID</th>
+                                    <th class="p-2">Full Name</th>
+                                    <th class="p-2">Times Ordered</th>
+                                    <th class="p-2">Last Ordered</th>
                                 </tr>
                             </thead>
 
@@ -68,12 +99,14 @@ $result = $conn->query($sql);
                                 while($row=$result->fetch_assoc()){
                             ?>
 
-                            <tbody>
+                            <tbody class="align-middle">
                                 <tr class="text-center">
-                                    <td class="sale"><?php echo $row['c_id'] ?></td>
-                                    <td class="sale"><?php echo $row['c_fname'] ?></td>
-                                    <td class="sale"><?php echo $row['c_mname'] ?></td>
-                                    <td class="sale"><?php echo $row['c_lname'] ?></td>
+
+                                    <td class="p-2"><?php echo $row['c_id']; ?></td>
+                                    <td class="p-2"><?php echo $row['c_fullname']; ?></td>
+                                    <td class="p-2"><?php echo $row['order_count']; ?></td>
+                                    <td class="p-2"><?php echo $row['last_order_date']; ?></td>
+
                                 </tr>   
                             </tbody>
 
@@ -91,33 +124,39 @@ $result = $conn->query($sql);
 
                 <!-- orders table dashboard -->
                 <div class="p-2" style="border-radius: 5px;">
-                    <div class="d-flex justify-content-between align-items-center mb-2" style="margin-top: 5px;">
-                        <h5 class="m-0">Manage Orders</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="m-0">Orders</h5>
                         <a href="orderAdd.php" class="btn" role="button" name="adds">+ Add Order</a>
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover w-100 m-0">
-                            <thead>
+                        <table class="table table-sm table-hover m-0">
+                            <thead class="align-middle">
                                 <tr class="text-center">
-                                    <th>ID</th>
-                                    <th>Last Name</th>
-                                    <th>First Name</th>
-                                    <th>Middle Name</th>
+                                    <th class="p-2">Order ID</th>
+                                    <th class="p-2">Product Quantity</th>
+                                    <th class="p-2">Total</th>
+                                    <th class="p-2">Order Date</th>
                                 </tr>
                             </thead>
+                            <?php
+                                if($orders_result->num_rows>0)
+                                while($order=$orders_result->fetch_assoc()){
+                            ?>
                             <tbody>
                                 <tr class="text-center">
-                                    <td>0001</td>
-                                    <td>Regencia</td>
-                                    <td>Samantha Arabella</td>
-                                    <td>Redilla</td>
+                                     <td class="p-2"><?php echo $order['order_id']; ?></td>
+                                     <td class="p-2"><?php echo $order['quantity']; ?></td>
+                                     <td class="p-2"><?php echo $order['total']; ?></td>
+                                     <td class="p-2"><?php echo $order['order_date']; ?></td>
                                 </tr>      
                             </tbody>
+                            <?php
+                                }
+                            ?>
                         </table>
                     </div>
                 </div>
-
                 <div class="text-center p-2">
                     <p><a href="orderRead.php" class="text-secondary"> View more</a></p>
                 </div>
