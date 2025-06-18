@@ -87,7 +87,7 @@
                                     <td class="sale p-2"><?php echo $order['product_id'] ?></td>
                                     <td class="sale p-2"><?php echo $order['quantity'] ?></td>
                                     <td class="sale p-2">₱<?php echo $order['total'] ?></td>
-                                    <td class="sale p-2"><?php echo $order['order_date'] ?></td>
+                                    <td class="sale p-2"><?php echo date("F j, Y h:i A", strtotime($order['order_date'])); ?></td>
                                 </tr>   
                             </tbody>
                             <?php

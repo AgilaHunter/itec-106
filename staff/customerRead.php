@@ -86,9 +86,9 @@
 				                    <td class="sale p-2"><?php echo $row['c_email'] ?></td>
 				                    <td class="sale p-2"><?php echo $row['c_contact'] ?></td>
 				                    <td class="sale p-2"><?php echo $row['c_address'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['date_created'] ?></td>
+				                    <td class="sale p-2"><?php echo date("F j, Y", strtotime($row['date_created'])); ?></td>
 				                    <td class="sale p-2"><?php echo $row['order_count'] ?></td>
-				                    <td class="sale p-2"><?php echo $row['last_order_date'] ?></td>
+				                    <td class="sale p-2"><?php echo date("F j, Y h:i A", strtotime($row['last_order_date'])); ?></td>
 
 				                </tr>   
 	            			</tbody>

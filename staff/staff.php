@@ -105,7 +105,7 @@ $orders_result = $orders_stmt->get_result();
                                     <td class="p-2"><?php echo $row['c_id']; ?></td>
                                     <td class="p-2"><?php echo $row['c_fullname']; ?></td>
                                     <td class="p-2"><?php echo $row['order_count']; ?></td>
-                                    <td class="p-2"><?php echo $row['last_order_date']; ?></td>
+                                    <td class="p-2"><?php echo date("F j, Y h:i A", strtotime($row['last_order_date'])); ?></td>
 
                                 </tr>   
                             </tbody>
@@ -147,8 +147,8 @@ $orders_result = $orders_stmt->get_result();
                                 <tr class="text-center">
                                      <td class="p-2"><?php echo $order['order_id']; ?></td>
                                      <td class="p-2"><?php echo $order['quantity']; ?></td>
-                                     <td class="p-2"><?php echo $order['total']; ?></td>
-                                     <td class="p-2"><?php echo $order['order_date']; ?></td>
+                                     <td class="p-2">₱<?php echo $order['total']; ?></td>
+                                     <td class="p-2"><?php echo date("F j, Y h:i A", strtotime($order['order_date'])); ?></td>
                                 </tr>      
                             </tbody>
                             <?php

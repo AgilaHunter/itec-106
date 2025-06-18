@@ -46,18 +46,18 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-bordered m-0" id="performance">
-                            <thead>
+                        <table class="table table-hover m-0" id="performance">
+                            <thead class="align-middle">
                                 <tr class="text-center">
-                                    <th>ID</th>
-                                    <th>Customer</th>
-                                    <th>Product ID</th>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Order Date</th>
-                                    <th>Action</th>
+                                    <th class="p-2">Order ID</th>
+                                    <th class="p-2">Customer</th>
+                                    <th class="p-2">Product ID</th>
+                                    <th class="p-2">Product Name</th>
+                                    <th class="p-2">Price</th>
+                                    <th class="p-2">Quantity</th>
+                                    <th class="p-2">Total</th>
+                                    <th class="p-2">Order Date</th>
+                                    <th class="p-2">Action</th>
                                 </tr>
                             </thead>
 
@@ -66,16 +66,16 @@
                                 while($row=$result->fetch_assoc()){
                             ?>
 
-                            <tbody>
+                            <tbody class="align-middle">
                                 <tr class="text-center">
-                                    <td class="sale"><?php echo $row['id'] ?></td>
-                                    <td class="sale"><?php echo $row['customer_name'] ?></td>
-                                    <td class="sale"><?php echo $row['product_id'] ?></td>
-                                    <td class="sale"><?php echo $row['product_name'] ?></td>
-                                    <td class="sale">₱<?php echo $row['price'] ?></td>
-                                    <td class="sale"><?php echo $row['quantity'] ?></td>
-                                    <td class="sale">₱<?php echo $row['total'] ?></td>
-                                    <td class="sale"><?php echo $row['order_date'] ?></td>
+                                    <td class="sale p-2"><?php echo $row['id'] ?></td>
+                                    <td class="sale p-2"><?php echo $row['customer_name'] ?></td>
+                                    <td class="sale p-2"><?php echo $row['product_id'] ?></td>
+                                    <td class="sale p-2"><?php echo $row['product_name'] ?></td>
+                                    <td class="sale p-2">₱<?php echo $row['price'] ?></td>
+                                    <td class="sale p-2"><?php echo $row['quantity'] ?></td>
+                                    <td class="sale p-2">₱<?php echo $row['total'] ?></td>
+                                    <td class="sale p-2"><?php echo date("F j, Y h:i A", strtotime($row['order_date'])); ?></td>
 
                                     <td class="text-center">
                                         <span class="rounded-circle p-1 d-inline-flex justify-content-center align-items-center" style="background-color: #c9001a; width: 30px; height: 30px;">
