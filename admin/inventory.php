@@ -42,14 +42,14 @@
 				    </div>
 
 				    <div class="table-responsive">
-				        <table class="table table-bordered m-0" id="performance">
-				            <thead>
+				        <table class="table table-hover m-0" id="performance">
+				            <thead class="align-middle">
 				                <tr class="text-center">
-				                    <th>ID</th>
-				                    <th>Product</th>
-				                    <th>Price</th>
-				                    <th>Stock</th>
-                                    <th>Action</th>
+				                    <th class="p-2">Product ID</th>
+				                    <th class="p-2">Product</th>
+				                    <th class="p-2">Price</th>
+				                    <th class="p-2">Stock</th>
+                                    <th class="p-2">Action</th>
 				                </tr>
 				            </thead>
 
@@ -58,12 +58,12 @@
 				            	while($row=$result->fetch_assoc()){
 				            ?>
 
-				            <tbody>
+				            <tbody class="align-middle">
 				                <tr class="text-center">
-				                    <td class="sale"><?php echo $row['id'] ?></td>
-				                    <td class="sale"><?php echo $row['name'] ?></td>
-				                    <td class="sale"><?php echo $row['price'] ?></td>
-				                    <td class="sale"><?php echo $row['stock'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['id'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['name'] ?></td>
+				                    <td class="sale p-2">₱<?php echo $row['price'] ?></td>
+				                    <td class="sale p-2"><?php echo $row['stock'] ?></td>
 
                                     <td class="text-center">
 				                    	<span class="rounded-circle p-1 me-2 d-inline-flex justify-content-center align-items-center" style="background-color: #c9af00;width: 30px; height: 30px;">

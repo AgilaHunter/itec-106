@@ -45,7 +45,7 @@
 				        <table class="table table-sm table-hover m-0" id="performance">
 				            <thead class="align-middle">
 				                <tr class="text-center">
-				                    <th class="p-2">ID</th>
+				                    <th class="p-2">Staff ID</th>
 				                    <th class="p-2">Last Name</th>
 				                    <th class="p-2">First Name</th>
 				                    <th class="p-2">Middle Name</th>
