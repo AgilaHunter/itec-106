@@ -1,3 +1,3 @@
 # itec-106
 
-POS para kay edoy
+POS para kay sir ed
